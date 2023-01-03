@@ -1,6 +1,7 @@
 import axios from "axios";
 import { takeLatest, fork, put } from "redux-saga/effects";
 import actions from "../../actions";
+import { setLocalStorageItem } from "../../services/storage.service";
 const { eventActions } = actions;
 
 function* getEvents() {
@@ -23,7 +24,7 @@ function* watchGetEvents() {
 function* getEventDetails({ data }) {
   try {
     const response = yield axios({
-      url: `/events/${data.id}/`,
+      url: `/events/details/${data.id}`,
       method: "GET",
     });
 
@@ -43,12 +44,13 @@ function* watchGetEventDetails() {
 function* addEvent({ data }) {
   try {
     const response = yield axios({
-      url: "/events/",
+      url: data.path,
       method: "POST",
       data,
     });
 
     yield put({ type: eventActions.ADD_EVENTS_SUCCESS, data: response });
+    yield put(eventActions.getEventDetails(data.event));
   } catch (error) {
     yield put({ type: eventActions.ADD_EVENTS_ERROR, error: error.data });
   }

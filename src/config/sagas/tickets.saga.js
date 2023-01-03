@@ -2,7 +2,7 @@ import axios from "axios";
 import { takeLatest, fork, put } from "redux-saga/effects";
 
 import actions from "../actions";
-const { ticketActions } = actions;
+const { ticketActions, eventActions } = actions;
 
 function* getTickets() {
   try {
@@ -47,12 +47,13 @@ function* watchGetTicketDetails() {
 function* addTicket({ data }) {
   try {
     const response = yield axios({
-      url: "/tickets/",
+      url: "/tickets/create/",
       method: "POST",
       data,
     });
 
     yield put({ type: ticketActions.ADD_TICKETS_SUCCESS, data: response });
+    yield put(eventActions.getEventDetails({ id: data.event }));
   } catch (error) {
     yield put({ type: ticketActions.ADD_TICKETS_ERROR, error: error.data });
   }

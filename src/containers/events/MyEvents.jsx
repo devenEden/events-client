@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AppContainer from "../../components/shared/AppContainer";
 import AppLoader from "../../components/shared/AppLoader";
 import actions from "../../config/actions";
+import { setLocalStorageItem } from "../../config/services/storage.service";
 const { eventActions } = actions;
 
 const MyEvents = () => {
@@ -38,9 +39,18 @@ const MyEvents = () => {
     {
       title: "Action",
       key: "action",
-      render: () => (
+      render: (_, record) => (
         <Space size="middle">
-          <Button type="primary">Edit</Button>
+          <Button
+            onClick={() => {
+              navigate(`/manage-events/${record.id}`);
+              setLocalStorageItem("event", record);
+              dispatch(eventActions.getEventDetails({ id: record.id }));
+            }}
+            type="primary"
+          >
+            Edit
+          </Button>
           <Button danger type="primary">
             Delete
           </Button>
@@ -52,13 +62,17 @@ const MyEvents = () => {
     <AppContainer title={"My Events"}>
       <AppLoader loading={myEventsLoading}>
         <Button
-          onClick={() => navigate("/manage-events")}
+          onClick={() => navigate(`/add-event`)}
           type="primary"
           className="my-2"
         >
           Add Event
         </Button>
-        <Table columns={columns} dataSource={myEventsSuccess.data} />
+        <Table
+          rowKey={(record) => record.id}
+          columns={columns}
+          dataSource={myEventsSuccess.data}
+        />
       </AppLoader>
     </AppContainer>
   );

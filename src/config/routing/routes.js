@@ -45,8 +45,15 @@ const routes = {
         is_on_menu: true,
       },
       {
-        path: "manage-events",
+        path: "manage-events/:id",
         label: "Manage Events",
+        element: ManageEvents,
+        icon: AiOutlineSetting,
+        is_on_menu: false,
+      },
+      {
+        path: "add-event",
+        label: "Add Event",
         element: ManageEvents,
         icon: AiOutlineSetting,
         is_on_menu: false,
