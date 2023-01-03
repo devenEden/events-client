@@ -121,8 +121,6 @@ const ManageEvents = () => {
     },
   ];
 
-  console.log(fields);
-
   const onFinishEventOrganisers = (values) => {
     values.event = eventDetailsSuccess.data?.event?.id;
     values.path = "/events/organizers/create/";
