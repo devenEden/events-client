@@ -50,7 +50,7 @@ function* watchGetBookingDetails() {
 function* addBooking({ data }) {
   try {
     const response = yield axios({
-      url: "/bookings/",
+      url: "/tickets/booking/create/",
       method: "POST",
       data,
     });

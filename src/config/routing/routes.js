@@ -20,7 +20,7 @@ const routes = {
     path: "/",
     children: [
       {
-        path: "/events",
+        path: "/",
         label: "Events",
         element: Events,
         icon: AiOutlineCalendar,
@@ -41,11 +41,11 @@ const routes = {
         is_on_menu: true,
       },
       {
-        path: "/tickets",
+        path: "/tickets/:id",
         label: "Tickets",
         element: Tickets,
         icon: AiOutlineWallet,
-        is_on_menu: true,
+        is_on_menu: false,
       },
       {
         path: "settings",

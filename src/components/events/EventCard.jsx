@@ -3,8 +3,14 @@ import React from "react";
 import BgContainer from "../shared/BgContainer";
 import Image2 from "../../assets/image_1.png";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const EventCard = ({ title, summary, address, category }) => {
+const EventCard = ({ title, summary, address, category, id }) => {
+  const navigate = useNavigate();
+
+  const goToDetails = () => {
+    navigate(`/tickets/${id}`);
+  };
   return (
     <div className="event-card rounded shadow-sm m-1 w-100">
       <BgContainer>
@@ -13,7 +19,7 @@ const EventCard = ({ title, summary, address, category }) => {
             <Image className="rounded-2" height={230} src={Image2} />
           </div>
           <div className="even-card-content py-2 px-3">
-            <Typography.Title level={4}>{title}</Typography.Title>
+            <h3 className="fw-normal">{title}</h3>
             <div className="d-flex mb-3">
               <Tag color={"processing"}>{category}</Tag>
               <Tag>{address}</Tag>
@@ -23,7 +29,7 @@ const EventCard = ({ title, summary, address, category }) => {
             <br />
             <Typography.Text>{new Date().toDateString()}</Typography.Text>
             <br />
-            <Button className="mx-0 my-2" type="primary">
+            <Button onClick={goToDetails} className="mx-0 my-2" type="primary">
               {" "}
               Get Tickets
             </Button>
@@ -39,6 +45,7 @@ EventCard.propTypes = {
   summary: PropTypes.string,
   address: PropTypes.string,
   category: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default EventCard;

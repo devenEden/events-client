@@ -37,6 +37,7 @@ const Events = () => {
                   category={event.category}
                   summary={event.summary}
                   key={event.id}
+                  id={event.id}
                 />
               ))}
             </div>

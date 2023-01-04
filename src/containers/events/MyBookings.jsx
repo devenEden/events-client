@@ -33,7 +33,7 @@ const MyBookings = () => {
           (event) => event.id === text
         );
 
-        return event.title;
+        return event?.title;
       },
     },
     {
