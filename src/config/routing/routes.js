@@ -4,6 +4,7 @@ import {
   AiOutlineLogout,
   AiOutlineQrcode,
   AiOutlineSetting,
+  AiOutlineWallet,
 } from "react-icons/ai";
 import Settings from "../../containers/app/Settings";
 import Login from "../../containers/auth/Login";
@@ -12,6 +13,7 @@ import ManageEvents from "../../containers/events/ManageEvents";
 import MyBookings from "../../containers/events/MyBookings";
 import MyEvents from "../../containers/events/MyEvents";
 import AuthLayout from "../../layouts/AuthLayout";
+import Tickets from "../../containers/events/Tickets";
 
 const routes = {
   internalRoutes: {
@@ -36,6 +38,13 @@ const routes = {
         element: MyBookings,
         label: "My Tickets",
         icon: AiOutlineQrcode,
+        is_on_menu: true,
+      },
+      {
+        path: "/tickets",
+        label: "Tickets",
+        element: Tickets,
+        icon: AiOutlineWallet,
         is_on_menu: true,
       },
       {
