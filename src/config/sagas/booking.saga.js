@@ -7,7 +7,7 @@ const { bookingActions } = actions;
 function* getBookings() {
   try {
     const response = yield axios({
-      url: "/bookings/",
+      url: "/tickets/get-my-bookings/",
       method: "GET",
     });
 

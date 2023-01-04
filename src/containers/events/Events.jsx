@@ -1,4 +1,5 @@
 import { Calendar, Form, Select } from "antd";
+import { isEmpty } from "lodash";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EventCard from "../../components/events/EventCard";
@@ -12,8 +13,8 @@ const Events = () => {
   const { eventsSuccess, eventsLoading } = useSelector((state) => state.events);
 
   useEffect(() => {
-    dispatch(eventActions.getEvents());
-  }, []);
+    if (isEmpty(eventsSuccess)) dispatch(eventActions.getEvents());
+  }, [eventsSuccess]);
 
   return (
     <AppContainer title={`Events (${eventsSuccess?.data?.events?.length})`}>

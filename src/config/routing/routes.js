@@ -2,7 +2,7 @@ import {
   AiOutlineCalendar,
   AiOutlineDesktop,
   AiOutlineLogout,
-  AiOutlinePieChart,
+  AiOutlineQrcode,
   AiOutlineSetting,
   AiOutlineWallet,
 } from "react-icons/ai";
@@ -10,6 +10,7 @@ import Settings from "../../containers/app/Settings";
 import Login from "../../containers/auth/Login";
 import Events from "../../containers/events/Events";
 import ManageEvents from "../../containers/events/ManageEvents";
+import MyBookings from "../../containers/events/MyBookings";
 import MyEvents from "../../containers/events/MyEvents";
 import AuthLayout from "../../layouts/AuthLayout";
 import Tickets from "../../containers/events/Tickets";
@@ -33,6 +34,13 @@ const routes = {
         is_on_menu: true,
       },
       {
+        path: "/my-tickets",
+        element: MyBookings,
+        label: "My Tickets",
+        icon: AiOutlineQrcode,
+        is_on_menu: true,
+      },
+      {
         path: "/tickets",
         label: "Tickets",
         element: Tickets,
@@ -44,13 +52,6 @@ const routes = {
         label: "Settings",
         element: Settings,
         icon: AiOutlineSetting,
-        is_on_menu: true,
-      },
-      {
-        path: "manage-reports",
-        label: "Reports",
-        element: Events,
-        icon: AiOutlinePieChart,
         is_on_menu: true,
       },
       {

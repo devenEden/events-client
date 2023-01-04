@@ -1,7 +1,6 @@
 import axios from "axios";
 import { takeLatest, fork, put } from "redux-saga/effects";
 import actions from "../../actions";
-import { setLocalStorageItem } from "../../services/storage.service";
 const { eventActions } = actions;
 
 function* getEvents() {
