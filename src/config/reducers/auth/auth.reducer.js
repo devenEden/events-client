@@ -40,6 +40,24 @@ const auth = (state = initialState.auth, actions) => {
         registerLoading: false,
         registerError: actions.error,
       };
+    case authActions.CONFIRM_ACCOUNT_REQUEST:
+      return {
+        ...state,
+        confirmAccountLoading: true,
+        confirmAccountError: {},
+      };
+    case authActions.CONFIRM_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        confirmAccountLoading: false,
+        confirmAccountSuccess: actions.data,
+      };
+    case authActions.CONFIRM_ACCOUNT_ERROR:
+      return {
+        ...state,
+        confirmAccountLoading: false,
+        confirmAccountError: actions.error,
+      };
 
     default:
       return state;

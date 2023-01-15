@@ -4,6 +4,7 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import usePrevious from "../../components/hooks/usePrevious";
 import { isEmpty } from "lodash";
+import { useNavigate } from "react-router-dom";
 import actions from "../../config/actions";
 const { authActions } = actions;
 
@@ -13,8 +14,11 @@ const Signup = () => {
   );
   const dispatch = useDispatch();
   const prevState = usePrevious({ registerSuccess });
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
+    // add is_admin field in values
+    values.is_admin = false;
     dispatch(authActions.register(values));
   };
 
@@ -24,6 +28,8 @@ const Signup = () => {
       !isEmpty(registerSuccess) &&
       prevState.registerSuccess !== registerSuccess
     ) {
+      // navigate to login page
+      navigate("/auth/login");
       Modal.success({
         title: "SUCCESSFULLY CREATED ACCOUNT!",
         content:
@@ -31,8 +37,9 @@ const Signup = () => {
       });
     } else if (!isEmpty(registerError)) {
       Modal.error({
-        title: "FAILED TO CREATE ACCOUNT",
-        content: registerError?.server?.message,
+        // convert title to upper case
+        title: registerError?.server?.message.toUpperCase(),
+        content: registerError?.message,
       });
     }
   }, [prevState, registerSuccess, registerError]);

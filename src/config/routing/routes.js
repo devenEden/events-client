@@ -15,6 +15,7 @@ import MyEvents from "../../containers/events/MyEvents";
 import AuthLayout from "../../layouts/AuthLayout";
 import Tickets from "../../containers/events/Tickets";
 import Signup from "../../containers/auth/Signup";
+import ConfirmAccount from "../../containers/auth/ConfirmAccount";
 
 const routes = {
   internalRoutes: {
@@ -89,6 +90,10 @@ const routes = {
       {
         path: "signup",
         element: Signup,
+      },
+      {
+        path: "confirm-account/:token",
+        element: ConfirmAccount,
       },
     ],
   },

@@ -27,9 +27,9 @@ const Login = () => {
       !isEmpty(loginSuccess) &&
       prevState.loginSuccess !== loginSuccess
     ) {
-      if (loginSuccess.token) {
+      if (loginSuccess.access_token.token) {
         navigate("/");
-        setLocalStorageItem("access_token", loginSuccess.token);
+        setLocalStorageItem("access_token", loginSuccess.access_token.token);
         notification.success({ message: loginSuccess?.server?.message });
       }
     }
@@ -57,7 +57,7 @@ const Login = () => {
               ))}
             </>
           )}
-          <Form.Item name={"username"}>
+          <Form.Item name={"email"}>
             <Input
               size="large"
               prefix={<AiOutlineUser />}
