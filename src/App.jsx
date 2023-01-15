@@ -25,7 +25,17 @@ const App = () => {
             <Route
               path={routes.externalRoutes.path}
               element={createElement(routes.externalRoutes.element)}
-            />
+            >
+              {routes.externalRoutes.children.map((child) => {
+                return (
+                  <Route
+                    key={child.path}
+                    path={child.path}
+                    element={createElement(child.element)}
+                  />
+                );
+              })}
+            </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>

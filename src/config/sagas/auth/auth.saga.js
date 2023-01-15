@@ -6,7 +6,7 @@ const { authActions } = actions;
 function* login({ data }) {
   try {
     const response = yield axios({
-      url: "/api-token-auth/",
+      url: "/users/auth/login/",
       method: "POST",
       data,
     });
@@ -24,7 +24,7 @@ function* watchLogin() {
 function* register({ data }) {
   try {
     const response = yield axios({
-      url: "/register-user/",
+      url: "/users/auth/register/",
       method: "POST",
       data,
     });
