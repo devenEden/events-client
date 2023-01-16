@@ -57,7 +57,7 @@ const Signup = () => {
         Welcome to <Link to="/">Events App</Link>
       </h1>
       <AppComponentError error={registerError} />
-      <div className="w-100  p-3 mt-3">
+      <div className="w-100  p-3">
         <Form
           onFinish={onFinish}
           name="signup"
@@ -179,7 +179,7 @@ const Signup = () => {
                 <Input placeholder="eg.07********" size="large" />
               </Form.Item>
             </div>
-            <div className="form-input">
+            <div className="form-input mx-1">
               <Form.Item
                 label="Other names"
                 name="other_names"
