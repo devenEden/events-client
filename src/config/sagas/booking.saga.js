@@ -7,7 +7,7 @@ const { bookingActions } = actions;
 function* getBookings() {
   try {
     const response = yield axios({
-      url: "/tickets/get-my-bookings/",
+      url: "/tickets/booking/my-bookings/",
       method: "GET",
     });
 
@@ -68,7 +68,7 @@ function* watchAddBooking() {
 function* deleteBooking({ data }) {
   try {
     const response = yield axios({
-      url: `/bookings/${data.id}/`,
+      url: `/tickets/bookings/${data.id}/`,
       method: "DELETE",
     });
 
@@ -85,7 +85,7 @@ function* watchDeleteBooking() {
 function* updateBooking({ data }) {
   try {
     const response = yield axios({
-      url: `/bookings/${data.id}/`,
+      url: `/tickets/bookings/${data.id}/`,
       method: "PUT",
       data,
     });

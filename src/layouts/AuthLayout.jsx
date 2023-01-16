@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { getAccessToken } from "../config/services/storage.service";
 import { useNavigate } from "react-router-dom";
 import { Image } from "antd";
-import Image2 from "../assets/logo.png";
+import Image2 from "../assets/Auth.svg";
 
 const AuthLayout = () => {
   const {
@@ -18,20 +18,24 @@ const AuthLayout = () => {
   }, [token]);
   return (
     <div
-      className="auth-row"
+      className="d-flex "
       style={{
         backgroundColor: colorBgContainer,
         minHeight: "100vh",
       }}
     >
-      <div className="left-col">
-        <div className="left-container">
-          <div className="img-container">
-            <Image className="rounded-2" src={Image2} />
-          </div>
+      <div className="left-col d-none d-md-block w-50 h-100">
+        <div className=" d-md-flex justify-content-center align-items-center">
+          <Image
+            height={500}
+            width={500}
+            preview={false}
+            className="rounded-2 mt-5"
+            src={Image2}
+          />
         </div>
       </div>
-      <div className="right-col">
+      <div className="right-col w-50 w-sm-100">
         <div className="right-container">
           <div className="form-container">
             <Outlet />

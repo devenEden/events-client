@@ -71,7 +71,7 @@ const MyEvents = () => {
         <Table
           rowKey={(record) => record.id}
           columns={columns}
-          dataSource={myEventsSuccess.data}
+          dataSource={myEventsSuccess.events}
         />
       </AppLoader>
     </AppContainer>

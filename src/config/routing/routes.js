@@ -3,6 +3,7 @@ import {
   AiOutlineDesktop,
   AiOutlineLogout,
   AiOutlineQrcode,
+  AiOutlineScan,
   AiOutlineSetting,
   AiOutlineWallet,
 } from "react-icons/ai";
@@ -16,17 +17,25 @@ import AuthLayout from "../../layouts/AuthLayout";
 import EventDetails from "../../containers/events/EventDetails";
 import Signup from "../../containers/auth/Signup";
 import ConfirmAccount from "../../containers/auth/ConfirmAccount";
+import Scan from "../../containers/scan/Scan";
 
 const routes = {
   internalRoutes: {
     path: "/",
     children: [
       {
-        path: "/events",
+        path: "/",
         label: "Events",
         element: Events,
         icon: AiOutlineCalendar,
-        is_on_menu: true,
+        is_on_menu: false,
+      },
+      {
+        path: "/scan/:id",
+        element: Scan,
+        icon: AiOutlineScan,
+        is_on_menu: false,
+        label: "Scan",
       },
       {
         path: "/my-events",
@@ -40,7 +49,7 @@ const routes = {
         element: MyBookings,
         label: "My Tickets",
         icon: AiOutlineQrcode,
-        is_on_menu: true,
+        is_on_menu: false,
       },
       {
         path: "/events/:id",

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { method } from "lodash";
 import { takeLatest, put, fork } from "redux-saga/effects";
 import actions from "../../actions";
 import { setToken } from "../../services/storage.service";
@@ -59,7 +58,6 @@ function* watchAuthUser() {
   yield takeLatest(authActions.AUTH_USER_REQUEST, authUser);
 }
 
-
 function* confirmAccount({ data, token }) {
   try {
     const response = yield axios({
@@ -81,5 +79,5 @@ export default [
   fork(watchLogin),
   fork(watchRegisterUser),
   fork(watchConfirmAccount),
-  fork(watchAuthUser)
+  fork(watchAuthUser),
 ];
