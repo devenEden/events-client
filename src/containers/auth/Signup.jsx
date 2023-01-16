@@ -53,6 +53,8 @@ const Signup = () => {
       <br className="d-md-none" />
       <br className="d-md-none" />
       <br className="d-md-none" />
+      <br className="d-md-none" />
+      <br className="d-md-none" />
       <h1 className="mt-5 text-center fw-bold">
         Welcome to <Link to="/">Events App</Link>
       </h1>
@@ -84,6 +86,40 @@ const Signup = () => {
                   {
                     whitespace: true,
                     message: "First name can't be empty",
+                  },
+                  {
+                    validator: (_, value) => {
+                      var symbols = /^[a-z ,.'-]+$/i;
+                      if (value.match(symbols)) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error("Only alpha-numeric characters allowed")
+                      );
+                    },
+                  },
+                ]}
+              >
+                <Input size="large" />
+              </Form.Item>
+              <Form.Item
+                label="Other names"
+                name="other_names"
+                rules={[
+                  { required: true, message: "Please input your other names!" },
+                  {
+                    min: 3,
+                    message:
+                      "Your other names should not be less than 3 characters",
+                  },
+                  {
+                    max: 20,
+                    message:
+                      "Your other names should not be greater than 20 characters",
+                  },
+                  {
+                    whitespace: true,
+                    message: "Other name can't be empty",
                   },
                   {
                     validator: (_, value) => {
@@ -136,18 +172,6 @@ const Signup = () => {
               </Form.Item>
 
               <Form.Item
-                label="Gender"
-                name="gender"
-                rules={[
-                  { required: true, message: "Please select your other sex!" },
-                ]}
-              >
-                <Select size="large">
-                  <Select.Option value="male">Male</Select.Option>
-                  <Select.Option value="female">Female</Select.Option>
-                </Select>
-              </Form.Item>
-              <Form.Item
                 label="Phone number"
                 name="contact"
                 rules={[
@@ -181,38 +205,16 @@ const Signup = () => {
             </div>
             <div className="form-input">
               <Form.Item
-                label="Other names"
-                name="other_names"
+                label="Gender"
+                name="gender"
                 rules={[
-                  { required: true, message: "Please input your other names!" },
-                  {
-                    min: 3,
-                    message:
-                      "Your other names should not be less than 3 characters",
-                  },
-                  {
-                    max: 20,
-                    message:
-                      "Your other names should not be greater than 20 characters",
-                  },
-                  {
-                    whitespace: true,
-                    message: "Other name can't be empty",
-                  },
-                  {
-                    validator: (_, value) => {
-                      var symbols = /^[a-z ,.'-]+$/i;
-                      if (value.match(symbols)) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error("Only alpha-numeric characters allowed")
-                      );
-                    },
-                  },
+                  { required: true, message: "Please select your other sex!" },
                 ]}
               >
-                <Input size="large" />
+                <Select size="large">
+                  <Select.Option value="male">Male</Select.Option>
+                  <Select.Option value="female">Female</Select.Option>
+                </Select>
               </Form.Item>
               <Form.Item
                 label="Email"
