@@ -13,7 +13,6 @@ const httpService = {
         const localConfig = config;
         // Do something before request is sent
         const token = getAccessToken();
-
         if (token) localConfig.headers.Authorization = `Bearer ${token}`;
 
         if (!localConfig.headers["Content-type"])

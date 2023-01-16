@@ -4,6 +4,7 @@ import eventActions from "./events.actions";
 import ticketActions from "./tickets.actions";
 import bookingActions from "./booking.actions";
 import appUiActions from "./app/appUi.actions";
+import scanActions from "./scan/scan.actions";
 
 export default {
   serverActions,
@@ -12,4 +13,5 @@ export default {
   ticketActions,
   bookingActions,
   appUiActions,
+  scanActions,
 };

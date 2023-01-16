@@ -4,8 +4,9 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import usePrevious from "../../components/hooks/usePrevious";
 import { isEmpty } from "lodash";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import actions from "../../config/actions";
+import AppComponentError from "../../components/shared/AppComponentError";
 const { authActions } = actions;
 
 const Signup = () => {
@@ -45,17 +46,26 @@ const Signup = () => {
   }, [prevState, registerSuccess, registerError]);
 
   return (
-    <div className="w-100">
-      <h1 className="heading-xlarge text-center">Welcome to Events App</h1>
-      <div className="w-100 mt-3">
+    <div className="w-100 mt-5">
+      <br className="d-md-none" />
+      <br className="d-md-none" />
+      <br className="d-md-none" />
+      <br className="d-md-none" />
+      <br className="d-md-none" />
+      <br className="d-md-none" />
+      <h1 className="mt-5 text-center fw-bold">
+        Welcome to <Link to="/">Events App</Link>
+      </h1>
+      <AppComponentError error={registerError} />
+      <div className="w-100  p-3 mt-3">
         <Form
           onFinish={onFinish}
           name="signup"
           autoComplete="off"
           layout="vertical"
         >
-          <div className="d-md-flex flex-row w-100">
-            <div className="form-input">
+          <div className="d-md-flex flex-row justify-content-center w-100">
+            <div className="form-input mx-1">
               <Form.Item
                 label="First name"
                 name="surname"
@@ -137,27 +147,36 @@ const Signup = () => {
                   <Select.Option value="female">Female</Select.Option>
                 </Select>
               </Form.Item>
-
               <Form.Item
-                name="password"
-                label="Password"
+                label="Phone number"
+                name="contact"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your password!",
+                    message: "Phone number is required",
                   },
                   {
-                    min: 8,
-                    message:
-                      "Your password should be greater than 8 characters",
+                    min: 10,
+                    message: "Phone number can't be less than 10 numbers",
+                  },
+                  {
+                    max: 10,
+                    message: "Phone number can't be more than 10 numbers",
+                  },
+                  {
+                    validator: (_, value) => {
+                      var numbers = /^[0-9]+$/;
+                      if (value.match(numbers)) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error("Enter only numeric characters (numbers)")
+                      );
+                    },
                   },
                 ]}
-                hasFeedback
               >
-                <Input.Password
-                  size="large"
-                  prefix={<AiOutlineLock className="text-secondary" />}
-                />
+                <Input placeholder="eg.07********" size="large" />
               </Form.Item>
             </div>
             <div className="form-input">
@@ -211,36 +230,27 @@ const Signup = () => {
                   size="large"
                 />
               </Form.Item>
+
               <Form.Item
-                label="Phone number"
-                name="contact"
+                name="password"
+                label="Password"
                 rules={[
                   {
                     required: true,
-                    message: "Phone number is required",
+                    message: "Please input your password!",
                   },
                   {
-                    min: 10,
-                    message: "Phone number can't be less than 10 numbers",
-                  },
-                  {
-                    max: 10,
-                    message: "Phone number can't be more than 10 numbers",
-                  },
-                  {
-                    validator: (_, value) => {
-                      var numbers = /^[0-9]+$/;
-                      if (value.match(numbers)) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error("Enter only numeric characters (numbers)")
-                      );
-                    },
+                    min: 8,
+                    message:
+                      "Your password should be greater than 8 characters",
                   },
                 ]}
+                hasFeedback
               >
-                <Input placeholder="eg.07********" size="large" />
+                <Input.Password
+                  size="large"
+                  prefix={<AiOutlineLock className="text-secondary" />}
+                />
               </Form.Item>
               <Form.Item
                 name="confirm"
@@ -283,17 +293,25 @@ const Signup = () => {
           <Form.Item className="w-100">
             <div className="w-100 d-flex justify-content-center">
               <Button
-                className="w-75"
+                className="w-50"
                 type="primary"
                 htmlType="submit"
                 size="large"
                 loading={registerLoading}
+                shape="round"
               >
                 Sign up
               </Button>
             </div>
           </Form.Item>
         </Form>
+        <hr />
+        <p className="text-center">Already Have an Account ? </p>
+        <div className="d-flex justify-content-center">
+          <Button onClick={() => navigate("/auth/login")} shape="round">
+            Login
+          </Button>
+        </div>
       </div>
     </div>
   );

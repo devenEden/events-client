@@ -32,7 +32,7 @@ const EventDetails = () => {
 
   const bookTicket = (id) => {
     if (isEmpty(authUserSuccess)) {
-      navigate("/auth");
+      navigate("/auth/login");
       notification.info({
         message: "Please login to buy a ticket for the event",
       });
@@ -45,7 +45,7 @@ const EventDetails = () => {
       <AppLoader loading={eventDetailsLoading}>
         <AppComponentError error={eventDetailsError}>
           <div className="w-100 d-lg-flex">
-            <div className="w-50 px-2 w-sm-100">
+            <div data-aos="fade-in" className="w-50 px-2 w-sm-100">
               <Carousel autoplay>
                 {data?.event_images?.map((image) => {
                   return (
@@ -65,29 +65,36 @@ const EventDetails = () => {
               </Carousel>
             </div>
             <div className="w-50 mt-md-3 p-2 w-sm-100">
-              <h1 className="fw-bold">{data?.title}</h1>
-              <div className="event-card-top my-4 d-flex">
-                <div className="d-flex w-50 justify-content-left">
-                  <Button className="" shape="round">
-                    {data?.category}
-                  </Button>
-                  <Button type="primary" className="mx-2" shape="round">
-                    {data?.location}
-                  </Button>
+              <div data-aos="fade-up">
+                <h1 className="fw-bold">{data?.title}</h1>
+                <div className="event-card-top my-4 d-flex">
+                  <div className="d-flex w-50 justify-content-left">
+                    <Button className="" shape="round">
+                      {data?.category}
+                    </Button>
+                    <Button type="primary" className="mx-2" shape="round">
+                      {data?.location}
+                    </Button>
+                  </div>
+                  <h4 className="w-50 d-flex justify-content-end">
+                    <AiOutlineHeart className="text-right" />
+                  </h4>
                 </div>
-                <h4 className="w-50 d-flex justify-content-end">
-                  <AiOutlineHeart className="text-right" />
-                </h4>
+                <p>{data?.description}</p>
               </div>
-              <p>{data?.description}</p>
-              <p className="fw-bold">
+              <p data-aos="fade-up" className="fw-bold">
                 <AiOutlineCalendar />
                 {` ${new Date(data?.start_date).toDateString()} - ${new Date(
                   data?.end_date
                 ).toDateString()}`}
               </p>
-              <h5 className="fw-bold">Tickets</h5>
-              <div className="d-flex text-card-container flex-wrap">
+              <h5 data-aos="fade-up" className="fw-bold">
+                Tickets
+              </h5>
+              <div
+                data-aos="fade-up"
+                className="d-flex text-card-container flex-wrap"
+              >
                 {data?.tickets?.map((ticket) => {
                   return (
                     <div

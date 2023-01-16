@@ -1,12 +1,16 @@
 import { Button, Input, Form, Alert, notification } from "antd";
 import { isEmpty } from "lodash";
 import React, { useEffect } from "react";
-import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
+import {
+  AiOutlineEnvironment,
+  AiOutlineLock,
+  AiOutlineUser,
+} from "react-icons/ai";
 import usePrevious from "../../components/hooks/usePrevious";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../config/actions";
-import { useNavigate } from "react-router-dom";
-import { setLocalStorageItem } from "../../config/services/storage.service";
+import { Link, useNavigate } from "react-router-dom";
+import AppComponentError from "../../components/shared/AppComponentError";
 const { authActions } = actions;
 
 const Login = () => {
@@ -29,7 +33,6 @@ const Login = () => {
     ) {
       if (loginSuccess.access_token.token) {
         navigate("/");
-        setLocalStorageItem("access_token", loginSuccess.access_token.token);
         notification.success({ message: loginSuccess?.server?.message });
       }
     }
@@ -41,7 +44,13 @@ const Login = () => {
 
   return (
     <div className="w-100">
-      <h1 className="heading-xlarge text-center">Welcome Back!</h1>
+      <h1 className="text-center display-2">
+        <Link to="/">
+          <AiOutlineEnvironment />
+        </Link>
+      </h1>
+      <h1 className="mt-0 display-2 text-center fw-bold">Welcome Back!</h1>
+      <AppComponentError error={loginError} />
       <div className="w-100 d-flex flex-column align-items-center pt-3">
         <Form onFinish={onFinish} layout="vertical" className="login-input">
           {!isEmpty(loginError) && (

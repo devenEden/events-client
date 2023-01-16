@@ -1,14 +1,32 @@
 import React from "react";
-import { Layout, Typography } from "antd";
+import { Layout, notification, Typography } from "antd";
 import PropTypes from "prop-types";
 import AppSider from "./AppSider";
 import AppHeader from "./AppHeader";
+import { getAccessToken } from "../../config/services/storage.service";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { isEmpty } from "lodash";
 // import { useLocation } from "react-router-dom";
 const { Content } = Layout;
 const AppContainer = ({ title, children }) => {
   //   const location = useLocation();
+  const { authUserSuccess } = useSelector((state) => state.auth);
 
   //   const crumbs = location.pathname.split("/").filter((item) => item !== "");
+  const token = getAccessToken();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) navigate("/auth/login");
+    if (!isEmpty(authUserSuccess) && !authUserSuccess?.user?.is_admin) {
+      navigate("/");
+      notification.error({
+        message: "You are not authorized to access this page",
+      });
+    }
+  }, [token]);
 
   return (
     <Layout
