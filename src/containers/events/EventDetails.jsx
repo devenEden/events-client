@@ -111,7 +111,9 @@ const EventDetails = () => {
                       </div>
                       <div className="w-50">
                         <p className="mx-1 my-0 text-left">UGX</p>
-                        <h2 className="fw-bold m-0 mb-2 ">{ticket.price}</h2>
+                        <h2 className="fw-bold m-0 mb-2 ">
+                          {ticket.price.toLocaleString()}
+                        </h2>
                         <h5 className="mx-1 mb-2 text-secondary ">
                           {ticket.name}
                         </h5>

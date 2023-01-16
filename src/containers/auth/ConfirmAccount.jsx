@@ -3,7 +3,7 @@ import { Form, Button, Input, Modal, Card } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import usePrevious from "../../components/hooks/usePrevious";
 import { isEmpty } from "lodash";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import actions from "../../config/actions";
 const { authActions } = actions;
 
@@ -57,7 +57,9 @@ const ConfirmAccount = () => {
 
   return (
     <div className="d-flex flex-column justify-content-center w-75">
-      <h1 className="heading-xlarge text-center p-2">Confirm your Account!</h1>
+      <h1 className="heading-xlarge text-center p-2">
+        Confirm your <Link to="/">Events App</Link> Account!
+      </h1>
       <Card className="w-100">
         <div className="d-flex justify-content-center w-100">
           <Form
