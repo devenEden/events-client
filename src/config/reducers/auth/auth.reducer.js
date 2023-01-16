@@ -40,6 +40,24 @@ const auth = (state = initialState.auth, actions) => {
         registerLoading: false,
         registerError: actions.error,
       };
+    case authActions.AUTH_USER_REQUEST:
+      return {
+        ...state,
+        authUserLoading: true,
+      };
+    case authActions.AUTH_USER_SUCCESS:
+      return {
+        ...state,
+        authUserLoading: false,
+        authUserSuccess: actions.data,
+      };
+    case authActions.AUTH_USER_ERROR:
+      return {
+        ...state,
+        authUserLoading: false,
+        authUserError: actions.error,
+        authUserSuccess: {},
+      };
 
     default:
       return state;

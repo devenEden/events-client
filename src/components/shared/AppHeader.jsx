@@ -11,7 +11,7 @@ const AppHeader = () => {
   return (
     <Header
       style={{ background: colorBgContainer }}
-      className="border-bottom-secondary d-flex align-items-center px-3"
+      className=" d-flex shadow-sm align-items-center px-3"
     >
       <h5 className="fw-normal w-50 ">Hello, Feta Deven </h5>
       <div className="w-50 d-flex flex-row">

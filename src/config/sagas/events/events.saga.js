@@ -23,7 +23,7 @@ function* watchGetEvents() {
 function* getEventDetails({ data }) {
   try {
     const response = yield axios({
-      url: `/events/details/${data.id}`,
+      url: `/events/${data.id}`,
       method: "GET",
     });
 

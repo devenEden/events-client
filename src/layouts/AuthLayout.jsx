@@ -12,7 +12,7 @@ const AuthLayout = () => {
   const navigate = useNavigate("/");
 
   useEffect(() => {
-    if (token) navigate("/events");
+    if (token) navigate("/");
   }, [token]);
   return (
     <Layout style={{ minHeight: "100vh" }}>

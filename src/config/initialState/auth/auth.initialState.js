@@ -7,6 +7,10 @@ const authInitialState = {
     registerSuccess: {},
     registerError: {},
     registerLoading: false,
+
+    authUserSuccess: {},
+    authUserError: {},
+    authUserLoading: false,
   },
 };
 

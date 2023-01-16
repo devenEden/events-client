@@ -13,7 +13,7 @@ import ManageEvents from "../../containers/events/ManageEvents";
 import MyBookings from "../../containers/events/MyBookings";
 import MyEvents from "../../containers/events/MyEvents";
 import AuthLayout from "../../layouts/AuthLayout";
-import Tickets from "../../containers/events/Tickets";
+import EventDetails from "../../containers/events/EventDetails";
 
 const routes = {
   internalRoutes: {
@@ -41,9 +41,9 @@ const routes = {
         is_on_menu: true,
       },
       {
-        path: "/tickets/:id",
-        label: "Tickets",
-        element: Tickets,
+        path: "/events/:id",
+        label: "Event Details",
+        element: EventDetails,
         icon: AiOutlineWallet,
         is_on_menu: false,
       },

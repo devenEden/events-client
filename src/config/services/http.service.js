@@ -14,7 +14,7 @@ const httpService = {
         // Do something before request is sent
         const token = getAccessToken();
 
-        if (token) localConfig.headers.Authorization = `Token ${token}`;
+        if (token) localConfig.headers.Authorization = `Bearer ${token}`;
 
         if (!localConfig.headers["Content-type"])
           localConfig.headers["Content-type"] = "application/json";

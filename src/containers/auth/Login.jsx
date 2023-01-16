@@ -59,7 +59,7 @@ const Login = () => {
               ))}
             </>
           )}
-          <Form.Item name={"username"}>
+          <Form.Item name={"email"}>
             <Input
               size="large"
               prefix={<AiOutlineUser />}

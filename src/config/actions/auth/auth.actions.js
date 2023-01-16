@@ -7,6 +7,13 @@ const auth = {
   REGISTER_ERROR: "REGISTER_ERROR",
   REGISTER_REQUEST: "REGISTER_REQUEST",
 
+  AUTH_USER_SUCCESS: "AUTH_USER_SUCCESS",
+  AUTH_USER_ERROR: "AUTH_USER_ERROR",
+  AUTH_USER_REQUEST: "AUTH_USER_REQUEST",
+
+  getAuthUser: () => ({
+    type: auth.AUTH_USER_REQUEST,
+  }),
   login: (data) => ({
     type: auth.LOGIN_REQUEST,
     data,
