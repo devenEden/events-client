@@ -7,6 +7,10 @@ const authInitialState = {
     registerSuccess: {},
     registerError: {},
     registerLoading: false,
+
+    confirmAccountSuccess: {},
+    confirmAccountError: {},
+    confirmAccountLoading: false,
   },
 };
 

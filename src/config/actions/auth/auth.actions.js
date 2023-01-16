@@ -7,6 +7,10 @@ const auth = {
   REGISTER_ERROR: "REGISTER_ERROR",
   REGISTER_REQUEST: "REGISTER_REQUEST",
 
+  CONFIRM_ACCOUNT_SUCCESS: "CONFIRM_ACCOUNT_SUCCESS",
+  CONFIRM_ACCOUNT_ERROR: "CONFIRM_ACCOUNT_ERROR",
+  CONFIRM_ACCOUNT_REQUEST: "CONFIRM_ACCOUNT_REQUEST",
+
   login: (data) => ({
     type: auth.LOGIN_REQUEST,
     data,
@@ -14,6 +18,11 @@ const auth = {
   register: (data) => ({
     type: auth.REGISTER_REQUEST,
     data,
+  }),
+  confirmAccount: (data, token) => ({
+    type: auth.CONFIRM_ACCOUNT_REQUEST,
+    data,
+    token,
   }),
 };
 

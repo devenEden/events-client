@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { Layout, theme } from "antd";
-import Login from "../containers/auth/Login";
+import { theme } from "antd";
+import { Outlet } from "react-router-dom";
 import { getAccessToken } from "../config/services/storage.service";
 import { useNavigate } from "react-router-dom";
+import { Image } from "antd";
+import Image2 from "../assets/logo.png";
 
 const AuthLayout = () => {
   const {
@@ -15,16 +17,28 @@ const AuthLayout = () => {
     if (token) navigate("/events");
   }, [token]);
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <div className="d-flex justify-content-center align-items-center pt-5 ">
-        <div
-          className="w-50 shadow-sm rounded p-3"
-          style={{ background: colorBgContainer }}
-        >
-          <Login />
+    <div
+      className="auth-row"
+      style={{
+        backgroundColor: colorBgContainer,
+        minHeight: "100vh",
+      }}
+    >
+      <div className="left-col">
+        <div className="left-container">
+          <div className="img-container">
+            <Image className="rounded-2" src={Image2} />
+          </div>
         </div>
       </div>
-    </Layout>
+      <div className="right-col">
+        <div className="right-container">
+          <div className="form-container">
+            <Outlet />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
