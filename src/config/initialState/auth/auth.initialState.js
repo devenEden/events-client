@@ -8,6 +8,10 @@ const authInitialState = {
     registerError: {},
     registerLoading: false,
 
+    authUserSuccess: {},
+    authUserError: {},
+    authUserLoading: false,
+
     confirmAccountSuccess: {},
     confirmAccountError: {},
     confirmAccountLoading: false,

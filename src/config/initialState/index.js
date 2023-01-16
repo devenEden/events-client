@@ -1,3 +1,4 @@
+import appUiInitialState from "./app/appUi.initialState";
 import server from "./app/server.initialState";
 import authInitialState from "./auth/auth.initialState";
 import bookingInitialState from "./booking.initialState";
@@ -9,6 +10,7 @@ const initialState = {
   ...eventsInitalState,
   ...ticketsInitialState,
   ...bookingInitialState,
+  ...appUiInitialState,
 };
 
 export default initialState;

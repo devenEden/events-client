@@ -1,11 +1,12 @@
-import { Calendar, Form, Select } from "antd";
+import { Button, Image } from "antd";
 import { isEmpty } from "lodash";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import EventCard from "../../components/events/EventCard";
-import AppContainer from "../../components/shared/AppContainer";
-import AppLoader from "../../components/shared/AppLoader";
+import EventsPageContainer from "../../components/shared/EventsPageContainer";
 import actions from "../../config/actions";
+import EventCard from "../../components/events/EventCard";
+import AppLoader from "../../components/shared/AppLoader";
+import NoEvents from "../../assets/NoEvents.png";
 const { eventActions } = actions;
 
 const Events = () => {
@@ -17,37 +18,53 @@ const Events = () => {
   }, [eventsSuccess]);
 
   return (
-    <AppContainer title={`Events (${eventsSuccess?.data?.events?.length})`}>
-      <div className="mt-3">
-        <div className="w-50">
-          <Form layout="horizontal">
-            <Form.Item label="Category: " name={"categories"}>
-              <Select className="w-25" />
-            </Form.Item>
-          </Form>
-        </div>
-        <div className="p3 w-100 border-bottom " />
-        <AppLoader loading={eventsLoading}>
-          <div className="w-100 d-flex align-items-start">
-            <div className="d-flex flex-wrap py-2 w-75">
-              {eventsSuccess?.data?.events?.map((event) => (
-                <EventCard
-                  address={event.address}
-                  title={event.title}
-                  category={event.category}
-                  summary={event.summary}
-                  key={event.id}
-                  id={event.id}
-                />
-              ))}
-            </div>
-            <div className="w-25 mt-2">
-              <Calendar fullscreen={false} />
-            </div>
-          </div>
-        </AppLoader>
+    <EventsPageContainer>
+      <div className="my-3">
+        <h1 data-aos="fade-in" className="text-center fw-bold display-2">
+          Browse Events
+        </h1>
+        <p data-aos="fade-in" className="text-center my-3">
+          Welcome to events app! Discover exciting events happening near you,
+          from concerts and festivals to workshops
+        </p>
       </div>
-    </AppContainer>
+      <div
+        data-aos="fade-up"
+        className="buttons d-flex justify-content-center flex-wrap"
+      >
+        <Button className="mx-2" type="primary" shape="round">
+          All
+        </Button>
+        <Button className="mx-2" shape="round">
+          Parties
+        </Button>
+        <Button className="mx-2" shape="round">
+          Social
+        </Button>
+      </div>
+      <AppLoader loading={eventsLoading}>
+        <div className="all-events-container p-2 my-4 mx-5 d-flex flex-wrap justify-content-center ">
+          {isEmpty(eventsSuccess?.events) && (
+            <>
+              <h3>No Events Avalilable</h3>
+              <Image preview={false} src={NoEvents} />
+            </>
+          )}
+          {eventsSuccess?.events?.map((event) => {
+            return (
+              <EventCard
+                key={event.id}
+                id={event.id}
+                title={event.title}
+                category={event.category}
+                summary={event.summary}
+                images={event.event_images}
+              />
+            );
+          })}
+        </div>
+      </AppLoader>
+    </EventsPageContainer>
   );
 };
 

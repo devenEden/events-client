@@ -1,12 +1,5 @@
 import React, { createElement, useState } from "react";
-import {
-  AiOutlineBank,
-  AiOutlineCalendar,
-  AiOutlineDesktop,
-  AiOutlineEnvironment,
-  AiOutlineLogout,
-  AiOutlineSetting,
-} from "react-icons/ai";
+import { AiOutlineEnvironment } from "react-icons/ai";
 import { Layout, Menu, Typography } from "antd";
 import routes from "../../config/routing/routes";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +25,10 @@ const AppSider = () => {
         item.label,
         item.path,
         createElement(item.icon, {
-          style: { fontSize: "1.5rem", marginLeft: -5 },
+          style: {
+            fontSize: "1.5rem",
+            marginLeft: -12,
+          },
         }),
         null,
         () => navigate(item.path)
@@ -42,7 +38,7 @@ const AppSider = () => {
     <Sider
       collapsible
       theme="light"
-      className="shadow-sm overflow-hidden"
+      className="shadow-sm overflow-hidden "
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
     >
@@ -51,12 +47,10 @@ const AppSider = () => {
           <AiOutlineEnvironment />
         </h3>
         {!collapsed && (
-          <Typography.Title className="text-white" level={3}>
-            Event Manager
-          </Typography.Title>
+          <Typography.Title level={3}>Event Manager</Typography.Title>
         )}
       </div>
-      <div className="d-flex align-items-center h-50 overflow-hidden">
+      <div className="d-flex mt-5 align-items-center h-50 overflow-hidden">
         <Menu theme="light" mode="inline" items={menuItems} />
       </div>
     </Sider>
