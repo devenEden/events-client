@@ -1,4 +1,5 @@
 import axios from "axios";
+import { method } from "lodash";
 import { takeLatest, put, fork } from "redux-saga/effects";
 import actions from "../../actions";
 import { setToken } from "../../services/storage.service";
@@ -7,7 +8,7 @@ const { authActions } = actions;
 function* login({ data }) {
   try {
     const response = yield axios({
-      url: "/users/auth/login",
+      url: "/users/auth/login/",
       method: "POST",
       data,
     });
@@ -26,7 +27,7 @@ function* watchLogin() {
 function* register({ data }) {
   try {
     const response = yield axios({
-      url: "/register-user/",
+      url: "/users/auth/register/",
       method: "POST",
       data,
     });
@@ -58,4 +59,27 @@ function* watchAuthUser() {
   yield takeLatest(authActions.AUTH_USER_REQUEST, authUser);
 }
 
-export default [fork(watchLogin), fork(watchRegisterUser), fork(watchAuthUser)];
+
+function* confirmAccount({ data, token }) {
+  try {
+    const response = yield axios({
+      url: `/users/auth/verify-account/${token}`,
+      method: "POST",
+      data,
+    });
+    yield put({ type: authActions.CONFIRM_ACCOUNT_SUCCESS, data: response });
+  } catch (error) {
+    yield put({ type: authActions.CONFIRM_ACCOUNT_ERROR, error: error.data });
+  }
+}
+
+function* watchConfirmAccount() {
+  yield takeLatest(authActions.CONFIRM_ACCOUNT_REQUEST, confirmAccount);
+}
+
+export default [
+  fork(watchLogin),
+  fork(watchRegisterUser),
+  fork(watchConfirmAccount),
+  fork(watchAuthUser)
+];

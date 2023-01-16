@@ -1,11 +1,7 @@
 import { Button, Input, Form, Alert, notification } from "antd";
 import { isEmpty } from "lodash";
 import React, { useEffect } from "react";
-import {
-  AiOutlineEnvironment,
-  AiOutlineLock,
-  AiOutlineUser,
-} from "react-icons/ai";
+import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 import usePrevious from "../../components/hooks/usePrevious";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../config/actions";
@@ -31,21 +27,23 @@ const Login = () => {
       !isEmpty(loginSuccess) &&
       prevState.loginSuccess !== loginSuccess
     ) {
-      if (loginSuccess.token) {
+      if (loginSuccess.access_token.token) {
         navigate("/");
-        setLocalStorageItem("access_token", loginSuccess.token);
+        setLocalStorageItem("access_token", loginSuccess.access_token.token);
         notification.success({ message: loginSuccess?.server?.message });
       }
     }
   }, [prevState, loginSuccess]);
+
+  const createAccount = () => {
+    navigate("/auth/signup");
+  };
+
   return (
-    <div>
-      <h3 className="display-3 text-center">
-        <AiOutlineEnvironment />
-      </h3>
-      <h3 className="text-center fw-normal">Events App</h3>
+    <div className="w-100">
+      <h1 className="heading-xlarge text-center">Welcome Back!</h1>
       <div className="w-100 d-flex flex-column align-items-center pt-3">
-        <Form onFinish={onFinish} layout="vertical" className="w-50">
+        <Form onFinish={onFinish} layout="vertical" className="login-input">
           {!isEmpty(loginError) && (
             <>
               {loginError?.non_field_errors?.map((err) => (
@@ -86,9 +84,9 @@ const Login = () => {
           </Form.Item>
         </Form>
         <Button type="text text-dark">Forgot Your Password ?</Button>
-        <div className="p-3 w-50 border-bottom" />
+        <div className="p-3 border-bottom login-input" />
         <p className="text-center my-3">Dont Have an Account ?</p>
-        <Button size="large" className="w-50">
+        <Button size="large" className="login-input" onClick={createAccount}>
           Create New Account
         </Button>
       </div>

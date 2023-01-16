@@ -11,6 +11,10 @@ const authInitialState = {
     authUserSuccess: {},
     authUserError: {},
     authUserLoading: false,
+
+    confirmAccountSuccess: {},
+    confirmAccountError: {},
+    confirmAccountLoading: false,
   },
 };
 

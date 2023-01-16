@@ -14,13 +14,15 @@ import MyBookings from "../../containers/events/MyBookings";
 import MyEvents from "../../containers/events/MyEvents";
 import AuthLayout from "../../layouts/AuthLayout";
 import EventDetails from "../../containers/events/EventDetails";
+import Signup from "../../containers/auth/Signup";
+import ConfirmAccount from "../../containers/auth/ConfirmAccount";
 
 const routes = {
   internalRoutes: {
     path: "/",
     children: [
       {
-        path: "/",
+        path: "/events",
         label: "Events",
         element: Events,
         icon: AiOutlineCalendar,
@@ -84,6 +86,14 @@ const routes = {
       {
         path: "login",
         element: Login,
+      },
+      {
+        path: "signup",
+        element: Signup,
+      },
+      {
+        path: "confirm-account/:token",
+        element: ConfirmAccount,
       },
     ],
   },
