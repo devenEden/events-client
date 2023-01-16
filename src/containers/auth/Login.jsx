@@ -50,7 +50,7 @@ const Login = () => {
         </Link>
       </h1>
       <h1 className="mt-0 display-2 text-center fw-bold">Welcome Back!</h1>
-      <AppComponentError error={loginError?.server} />
+      <AppComponentError error={loginError} />
       <div className="w-100 d-flex flex-column align-items-center pt-3">
         <Form onFinish={onFinish} layout="vertical" className="login-input">
           {!isEmpty(loginError) && (
