@@ -43,7 +43,7 @@ function* watchGetEventDetails() {
 function* addEvent({ data }) {
   try {
     const response = yield axios({
-      url: data.path,
+      url: "/events",
       method: "POST",
       data,
     });
@@ -77,7 +77,7 @@ function* watchUpdateEvent() {
   yield takeLatest(eventActions.UPDATE_EVENTS_REQUEST, updateEvent);
 }
 
-function* deleteEvent({ id }) {
+function* deleteEvents({ id }) {
   try {
     const response = yield axios({
       url: `/events/${id}/`,
@@ -91,7 +91,7 @@ function* deleteEvent({ id }) {
 }
 
 function* watchDeleteEvent() {
-  yield takeLatest(eventActions.DELETE_EVENTS_REQUEST, deleteEvent);
+  yield takeLatest(eventActions.DELETE_EVENTS_REQUEST, deleteEvents);
 }
 
 function* getMyEvents() {
@@ -129,6 +129,30 @@ function* watchScanQrCode() {
   yield takeLatest(eventActions.SCAN_QR_CODE_REQUEST, scanQrCode);
 }
 
+function* uploadEventImages({ data, id }) {
+  try {
+    const response = yield axios({
+      url: `/events/images?eventId=${id}/`,
+      method: "POST",
+      data,
+    });
+
+    yield put({
+      type: eventActions.UPLOAD_EVENT_IMAGES_SUCCESS,
+      data: response,
+    });
+  } catch (error) {
+    yield put({
+      type: eventActions.UPLOAD_EVENT_IMAGES_ERROR,
+      error: error.data,
+    });
+  }
+}
+
+function* watchUploadEventImages() {
+  yield takeLatest(eventActions.UPLOAD_EVENT_IMAGES_REQUEST, uploadEventImages);
+}
+
 export default [
   fork(watchGetEvents),
   fork(watchGetEventDetails),
@@ -137,4 +161,5 @@ export default [
   fork(watchDeleteEvent),
   fork(watchGetMyEvents),
   fork(watchScanQrCode),
+  fork(watchUploadEventImages),
 ];

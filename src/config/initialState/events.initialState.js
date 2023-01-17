@@ -27,6 +27,10 @@ const eventsInitalState = {
     scanQrCodeSuccess: {},
     scanQrCodeError: {},
     scanQrCodeLoading: false,
+
+    uploadEventImagesSuccess: {},
+    uploadEventImagesError: {},
+    uploadEventImagesLoading: false,
   },
 };
 

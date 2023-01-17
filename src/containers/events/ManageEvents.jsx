@@ -30,10 +30,11 @@ const ManageEvents = () => {
   } = useSelector((state) => state.events);
 
   const onFinish = (values) => {
-    values.path = "/events/create/";
+    values.description = values.summary;
     dispatch(eventActions.addEvents(values));
   };
   const params = useParams();
+  const { Option } = Select;
 
   const fields = params?.id
     ? [
@@ -151,24 +152,152 @@ const ManageEvents = () => {
           )}
           <div className="d-flex">
             <div className="w-50 bg-white p-2 rounded">
-              <Form fields={fields} onFinish={onFinish} layout="vertical">
-                <Form.Item name={"title"} label="Title">
-                  <Input />
+              <Form
+                fields={fields}
+                onFinish={onFinish}
+                layout="vertical"
+                requiredMark={false}
+              >
+                <Form.Item
+                  name="title"
+                  label="Title"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input title!",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Title" size="large" />
                 </Form.Item>
-                <Form.Item name={"summary"} label="Summary">
-                  <Input />
+                <Form.Item
+                  name="summary"
+                  label="Summary"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input summary!",
+                    },
+                  ]}
+                >
+                  <Input.TextArea placeholder="Summary" size="large" />
                 </Form.Item>
-                <Form.Item label="Description" name={"description"}>
-                  <Input.TextArea />
+                <Form.Item
+                  name="event_type"
+                  label="Event Type"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input event type!",
+                    },
+                  ]}
+                >
+                  <Select placeholder="Event Type" size="large">
+                    <Option value="online">Online</Option>
+                    <Option value="physical">Physical</Option>
+                  </Select>
                 </Form.Item>
-                <Form.Item label="Category" name={"category"}>
-                  <Input />
+                <Form.Item
+                  name="category"
+                  label="Category"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input category!",
+                    },
+                  ]}
+                >
+                  <Select placeholder="Category" size="large">
+                    <Option value="music">Music</Option>
+                    <Option value="sports">Sports</Option>
+                    <Option value="food">Food</Option>
+                    <Option value="tech">Tech</Option>
+                    <Option value="art">Art</Option>
+                    <Option value="other">Other</Option>
+                  </Select>
                 </Form.Item>
-                <Form.Item label="Date" name={"created_at"}>
-                  <DatePicker className="w-100" />
+                <Form.Item
+                  name="location"
+                  label="Location"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input location!",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Location" size="large" />
                 </Form.Item>
-                <Form.Item label="Address" name={"address"}>
-                  <Input />
+                <Form.Item
+                  name="location_link"
+                  label="Location Link"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input location link!",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Location Link" size="large" />
+                </Form.Item>
+                <Form.Item
+                  name="start_date"
+                  label="Start Date"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input start date!",
+                    },
+                  ]}
+                >
+                  <DatePicker
+                    placeholder="Start Date"
+                    size="large"
+                    className="w-100"
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="end_date"
+                  label="End Date"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input end date!",
+                    },
+                  ]}
+                >
+                  <DatePicker
+                    placeholder="End Date"
+                    size="large"
+                    className="w-100"
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="age_limit"
+                  label="Age Limit"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input age limit!",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Age Limit" size="large" />
+                </Form.Item>
+                <Form.Item
+                  name="is_private"
+                  label="Status"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input is private!",
+                    },
+                  ]}
+                >
+                  <Select placeholder="Status" size="large">
+                    <Option value="true">Private</Option>
+                    <Option value="false">Public</Option>
+                  </Select>
                 </Form.Item>
                 <Button
                   loading={addEventsLoading}

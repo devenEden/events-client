@@ -135,9 +135,14 @@ h3 {
   width: 50%;
  }
 
-@media (max-width: 769px) {
+@media only screen and (max-width: 769px) {
   .auth-row {
     flex-direction: column;
+  }
+  .events-card{
+    width: 48%;
+    margin: 1%;
+    padding: 1%;
   }
   .left-col {
     order: 2;

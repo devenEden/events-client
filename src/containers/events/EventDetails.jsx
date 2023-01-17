@@ -99,7 +99,7 @@ const EventDetails = () => {
                   return (
                     <div
                       key={ticket.id}
-                      className="ticket-card w-sm-100 border p-2 d-flex  rounded-4"
+                      className="ticket-card w-sm-100 w-md-100 border p-2 d-flex  rounded-4"
                     >
                       <div className="w-50">
                         <Image

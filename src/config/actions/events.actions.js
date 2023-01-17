@@ -32,6 +32,10 @@ const events = {
   SCAN_QR_CODE_SUCCESS: "SCAN_QR_CODE_SUCCESS",
   SCAN_QR_CODE_ERROR: "SCAN_QR_CODE_ERROR",
 
+  UPLOAD_EVENT_IMAGES_REQUEST: "UPLOAD_EVENT_IMAGES_REQUEST",
+  UPLOAD_EVENT_IMAGES_SUCCESS: "UPLOAD_EVENT_IMAGES_SUCCESS",
+  UPLOAD_EVENT_IMAGES_ERROR: "UPLOAD_EVENT_IMAGES_ERROR",
+
   scanQrCode: (data) => ({
     type: events.SCAN_QR_CODE_REQUEST,
     data,
@@ -47,13 +51,14 @@ const events = {
     type: events.ADD_EVENTS_REQUEST,
     data,
   }),
-  updateEvents: (data) => ({
+  updateEvents: (data, id) => ({
     type: events.UPDATE_EVENTS_REQUEST,
     data,
+    id,
   }),
-  deleteEvents: (data) => ({
+  deleteEvents: (id) => ({
     type: events.DELETE_EVENTS_REQUEST,
-    data,
+    id,
   }),
   getEventDetails: (data) => ({
     type: events.GET_EVENT_DETAILS_REQUEST,
@@ -66,6 +71,11 @@ const events = {
   updateEventData: (data) => ({
     type: events.UPDATE_EVENT_DATA,
     data,
+  }),
+  uploadEventImages: (data, id) => ({
+    type: events.UPLOAD_EVENT_IMAGES_REQUEST,
+    data,
+    id,
   }),
 };
 
