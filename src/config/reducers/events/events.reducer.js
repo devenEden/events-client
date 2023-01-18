@@ -119,6 +119,24 @@ export default (state = initialState.events, actions) => {
         myEventsLoading: false,
         myEventsError: actions.error,
       };
+    case eventActions.UPLOAD_EVENT_IMAGES_REQUEST:
+      return {
+        ...state,
+        uploadEventImagesLoading: true,
+        uploadEventImagesError: {},
+      };
+    case eventActions.UPLOAD_EVENT_IMAGES_SUCCESS:
+      return {
+        ...state,
+        uploadEventImagesLoading: false,
+        uploadEventImagesSuccess: actions.data,
+      };
+    case eventActions.UPLOAD_EVENT_IMAGES_ERROR:
+      return {
+        ...state,
+        uploadEventImagesLoading: false,
+        uploadEventImagesError: actions.error,
+      };
 
     default:
       return state;

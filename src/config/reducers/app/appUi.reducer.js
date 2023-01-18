@@ -9,6 +9,16 @@ export default (state = initialState.appUi, actions) => {
         ...state,
         appDrawer: actions.data,
       };
+    case appUiActions.UPDATE_EVENTS_MODAL:
+      return {
+        ...state,
+        updateEventsModal: actions.data,
+      };
+    case appUiActions.UPLOAD_EVENT_IMAGES_MODAL:
+      return {
+        ...state,
+        uploadEventImagesModal: actions.data,
+      };
 
     default:
       return state;
