@@ -22,7 +22,6 @@ const UploadEventImages = () => {
     const formData = new FormData();
     formData.append("image", values.image.file.originFileObj);
     formData.append("type", "image");
-    formData.append("is_admin", "true");
     dispatch(eventActions.uploadEventImages(formData, eventDetailsSuccess?.id));
   };
 
@@ -42,7 +41,11 @@ const UploadEventImages = () => {
       }
       footer={null}
     >
-      {eventDetailsLoading && <Spin />}
+      {eventDetailsLoading && (
+        <div className="text-center">
+          <Spin size="large" />
+        </div>
+      )}
       <Form
         form={form}
         name="basic"
